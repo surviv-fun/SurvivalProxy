@@ -1,0 +1,35 @@
+[versions]
+
+# Gradle plugins
+shadow = "7.1.2"
+grgit = "4.1.1"
+licenser = "0.6.1"
+lombok = "6.5.0.3"
+
+# proxy
+velocity = "1.0.0-SNAPSHOT"
+
+kyori = "4.11.0"
+mongo = "4.7.1"
+jedis = "4.3.0-m1"
+
+# plugin apis
+luckperms = "5.4"
+
+# libs
+gson = "2.9.1"
+
+[plugins]
+# Gradle plugins
+shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
+grgit = { id = "org.ajoberstar.grgit", version.ref = "grgit" }
+licenser = { id = "org.cadixdev.licenser", version.ref = "licenser" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
+
+[libraries]
+velocity = { group = "com.velocitypowered", name = "velocity-api", version.ref = "velocity" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+mongo = { group = "org.mongodb", name = "mongodb-driver-legacy", version.ref = "mongo" }
+jedis = { group = "redis.clients", name = "jedis", version.ref = "jedis" }
+kyori = { group = "net.kyori", name = "adventure-text-serializer-legacy", version.ref = "kyori" }
+luckperms = { group = "net.luckperms", name = "api", version.ref = "luckperms" }
