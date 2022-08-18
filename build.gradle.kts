@@ -147,6 +147,12 @@ subprojects {
 
     tasks {
 
+        withType<ProcessResources> {
+            filesMatching("*") {
+                expand(project.properties)
+            }
+        }
+
         compileJava {
             options.compilerArgs.addAll(arrayOf("-Xmaxerrs", "1000"))
             options.compilerArgs.add("-Xlint:all")

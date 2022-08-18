@@ -18,8 +18,8 @@ val commit: String? = commitHash()
 
 dependencies {
     compileOnly(libs.velocity)
+    annotationProcessor(libs.velocity)
     compileOnly(libs.luckperms)
-    compileOnly(libs.kyori)
 
     implementation(libs.gson)
     implementation(libs.mongo)

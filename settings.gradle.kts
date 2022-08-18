@@ -5,4 +5,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-include("plugin")
+
+include(":plugin")
+
+project(":plugin").name = "SurvivalProxy-Velocity"

@@ -7,7 +7,7 @@ licenser = "0.6.1"
 lombok = "6.5.0.3"
 
 # proxy
-velocity = "1.0.0-SNAPSHOT"
+velocity = "3.0.0"
 
 kyori = "4.11.0"
 mongo = "4.7.1"
