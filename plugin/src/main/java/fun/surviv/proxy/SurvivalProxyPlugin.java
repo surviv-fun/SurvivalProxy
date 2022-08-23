@@ -33,9 +33,11 @@ import fun.surviv.proxy.commands.WhisperCommand;
 import fun.surviv.proxy.configuration.JsonConfig;
 import fun.surviv.proxy.configuration.defaults.DefaultDatabaseConfig;
 import fun.surviv.proxy.configuration.defaults.DefaultPluginConfig;
+import fun.surviv.proxy.configuration.defaults.DefaultTablistConfig;
 import fun.surviv.proxy.configuration.types.DatabaseConfig;
 import fun.surviv.proxy.configuration.types.MaintenanceConfig;
 import fun.surviv.proxy.configuration.types.PluginConfig;
+import fun.surviv.proxy.configuration.types.TablistConfig;
 import fun.surviv.proxy.listener.GlobalChatListener;
 import fun.surviv.proxy.listener.PlayerConnectListener;
 import fun.surviv.proxy.listener.ProxyPingListener;
@@ -84,6 +86,8 @@ public class SurvivalProxyPlugin {
     private JsonConfig<DatabaseConfig> databaseConfig;
     @Getter
     private JsonConfig<MaintenanceConfig> maintenanceConfig;
+    @Getter
+    private JsonConfig<TablistConfig> tablistConfig;
 
     @Inject
     public SurvivalProxyPlugin(ProxyServer server, Logger logger, @DataDirectory Path dataDir) {
@@ -195,7 +199,7 @@ public class SurvivalProxyPlugin {
             exception.printStackTrace();
         }
 
-        // load general databaseConfig
+        // load general maintenanceConfig
         try {
             File maintenanceConfigFile = new File(configPath, "maintenance.json");
             this.maintenanceConfig = new JsonConfig<>(MaintenanceConfig.class, maintenanceConfigFile);
@@ -203,6 +207,20 @@ public class SurvivalProxyPlugin {
             this.maintenanceConfig.load(true);
             this.maintenanceConfig.save(false);
             if (this.maintenanceConfig.get().getConfigVersion().split("-")[1] != VERSION) {
+                // TODO: rename and replace (or shutdown ??)
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
+        // load general zablistConfig
+        try {
+            File tablistConfigFile = new File(configPath, "tablist.json");
+            this.tablistConfig = new JsonConfig<>(TablistConfig.class, tablistConfigFile);
+            this.tablistConfig.setDefault(TablistConfig.class, new DefaultTablistConfig(VERSION + "-do_not_change"));
+            this.tablistConfig.load(true);
+            this.tablistConfig.save(false);
+            if (this.tablistConfig.get().getConfigVersion().split("-")[1] != VERSION) {
                 // TODO: rename and replace (or shutdown ??)
             }
         } catch (IOException exception) {

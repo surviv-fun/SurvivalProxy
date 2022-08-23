@@ -43,11 +43,11 @@ public class Constants {
     public static final String CONFIG_PATH_NAME = "configuration/";
     public static final String DATA_PATH_NAME = "data/";
     public static final String ACCENT_COLOR = "&3";
-    public static final String PREFIX = "&r[&9Survival&3Proxy&r]";
+    public static final String PREFIX = "&r[&9Survival&3Proxy&r]&r";
     public static final String CHAT_PREFIX = PREFIX + " &3»&r ";
     public static Component CHAT_PREFIX_COMPONENT = ComponentSerializer.etAndHEX.deserialize(CHAT_PREFIX).clickEvent(ClickEvent.openUrl("https://surviv.fun/")).hoverEvent(HoverEvent.showText(ComponentSerializer.etOnly.deserialize("&7Open Website")));
-    public static final String HEADER = "&r&6============= " + PREFIX + " =============&6\n";
-    public static final String FOOTER = "\n&6============= " + PREFIX + " =============&6&r";
+    public static final String HEADER = "&r&6============= &r" + PREFIX + " &r&6=============&r";
+    public static final String FOOTER = "&r&6============= &r" + PREFIX + " &r&6=============&r";
 
     public static Component PREFIX_COMPONENT = ComponentSerializer.etAndHEX.deserialize(PREFIX).clickEvent(ClickEvent.openUrl("https://surviv.fun/")).hoverEvent(HoverEvent.showText(ComponentSerializer.etOnly.deserialize("&7Open Website")));
 

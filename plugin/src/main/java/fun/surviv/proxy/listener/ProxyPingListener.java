@@ -46,10 +46,10 @@ import java.util.UUID;
  */
 public class ProxyPingListener {
 
-    private final String versionStringified = "v1.19.2";
+    private static final String versionStringified = "v1.19.2";
     private final SurvivalProxyPlugin plugin;
 
-    static final String HEAD = Constants.CHAT_PREFIX + " &r[&l&9AKTUELL IN ENTWICKLUNG&r]";
+    private static final String HEAD = "&3&lsurviv.fun &r&7[&9AKTUELL IN ENTWICKLUNG&7]&r &3" + versionStringified + "&r";
 
     private int pingCount = 0;
 
@@ -76,24 +76,24 @@ public class ProxyPingListener {
         }
 
         if (plugin.getMaintenanceConfig().get().isActive()) {
-            builder.maximumPlayers(0).version(new ServerPing.Version(ping.getVersion().getProtocol(), "SurvivFunMC" + versionStringified)).description(ComponentSerializer.etAndHEX.deserialize("&7Aktuell befinden wir uns im &cWartungsmodus&7." + "\n&7" + plugin.getMaintenanceConfig().get().getReason()));
+            builder.maximumPlayers(0).version(new ServerPing.Version(ping.getVersion().getProtocol(), "SurvivalMC-" + versionStringified)).description(ComponentSerializer.etAndHEX.deserialize("&7Aktuell befinden wir uns im &cWartungsmodus&7." + "\n&7" + plugin.getMaintenanceConfig().get().getReason()));
             builder.favicon(new Favicon(favicon(new File("server-icon_red.png"))));
             event.setPing(builder.build());
             return;
         }
 
-        builder.maximumPlayers(200).version(new ServerPing.Version(ping.getVersion().getProtocol(), "SurvivFunMC" + versionStringified));
+        builder.maximumPlayers(200).version(new ServerPing.Version(ping.getVersion().getProtocol(), "SurvivalMC-" + versionStringified));
 
         pingCount++;
 
         switch (pingCount) {
             case 0: {
-                builder.description(ComponentSerializer.etAndHEX.deserialize(HEAD + "\n&r&3surviv.fun &7- Nichts für schwache &3Nerven&7."));
+                builder.description(ComponentSerializer.etAndHEX.deserialize(HEAD + "\n&r&7Nichts für schwache &3Nerven&7."));
                 builder.favicon(new Favicon(favicon(new File("server-icon.png"))));
                 break;
             }
             case 1: {
-                builder.description(ComponentSerializer.etAndHEX.deserialize(HEAD + "\n&r&3surviv.fun &7- Nimm dich vor dem \"&3Zombum&7\" in Acht!"));
+                builder.description(ComponentSerializer.etAndHEX.deserialize(HEAD + "\n&r&7Nimm dich vor dem \"&3Zombum&7\" in Acht!"));
                 builder.favicon(new Favicon(favicon(new File("server-icon_green.png"))));
                 break;
             }
@@ -103,13 +103,13 @@ public class ProxyPingListener {
                 break;
             }
             case 3: {
-                builder.description(ComponentSerializer.etAndHEX.deserialize(HEAD + "\n&r&3surviv.fun &7- Ein gefährliches &3Spiel&7!"));
+                builder.description(ComponentSerializer.etAndHEX.deserialize(HEAD + "\n&r&7Ein gefährliches &3Spiel&7!"));
                 builder.favicon(new Favicon(favicon(new File("server-icon_red.png"))));
                 break;
             }
             default: {
                 pingCount = 0;
-                builder.description(ComponentSerializer.etAndHEX.deserialize(HEAD + "\n&r&3surviv.fun &7- Kämpfe bis zum letzten &3Atemzug&7!"));
+                builder.description(ComponentSerializer.etAndHEX.deserialize(HEAD + "\n&r&7Kämpfe bis zum letzten &3Atemzug&7!"));
                 builder.favicon(new Favicon(favicon(new File("server-icon_blue.png"))));
                 break;
             }

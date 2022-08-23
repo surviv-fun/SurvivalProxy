@@ -19,7 +19,13 @@
 
 package fun.surviv.proxy.listener;
 
+import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.connection.DisconnectEvent;
+import com.velocitypowered.api.event.connection.LoginEvent;
+import com.velocitypowered.api.event.player.ServerPostConnectEvent;
 import fun.surviv.proxy.SurvivalProxyPlugin;
+import fun.surviv.proxy.serialization.ComponentSerializer;
+import net.kyori.adventure.text.Component;
 
 /**
  * SurvivalProxy; fun.surviv.proxy.listener:TabListListener
@@ -33,6 +39,36 @@ public class TabListListener {
 
     public TabListListener(SurvivalProxyPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    @Subscribe
+    public void handleLogin(LoginEvent event) {
+        plugin.getServer().getAllPlayers().forEach(current -> {
+            Component headerComponent = ComponentSerializer.etAndHEX.deserialize(plugin.getTablistConfig().get().getHeader().replace("{servername}", current.getCurrentServer().get().getServerInfo().getName()).replace("{online}", plugin.getServer().getAllPlayers().size() + "").replace("{max}", plugin.getServer().getConfiguration().getShowMaxPlayers() + ""));
+            Component footerComponent = ComponentSerializer.etAndHEX.deserialize(plugin.getTablistConfig().get().getFooter());
+
+            current.sendPlayerListHeaderAndFooter(headerComponent, footerComponent);
+        });
+    }
+
+    @Subscribe
+    public void handleDisconnect(DisconnectEvent event) {
+        plugin.getServer().getAllPlayers().forEach(current -> {
+            Component headerComponent = ComponentSerializer.etAndHEX.deserialize(plugin.getTablistConfig().get().getHeader().replace("{servername}", current.getCurrentServer().get().getServerInfo().getName()).replace("{online}", plugin.getServer().getAllPlayers().size() + "").replace("{max}", plugin.getServer().getConfiguration().getShowMaxPlayers() + ""));
+            Component footerComponent = ComponentSerializer.etAndHEX.deserialize(plugin.getTablistConfig().get().getFooter());
+
+            current.sendPlayerListHeaderAndFooter(headerComponent, footerComponent);
+        });
+    }
+
+    @Subscribe
+    public void handleServerPostConnect(ServerPostConnectEvent event) {
+        plugin.getServer().getAllPlayers().forEach(current -> {
+            Component headerComponent = ComponentSerializer.etAndHEX.deserialize(plugin.getTablistConfig().get().getHeader().replace("{servername}", current.getCurrentServer().get().getServerInfo().getName()).replace("{online}", plugin.getServer().getAllPlayers().size() + "").replace("{max}", plugin.getServer().getConfiguration().getShowMaxPlayers() + ""));
+            Component footerComponent = ComponentSerializer.etAndHEX.deserialize(plugin.getTablistConfig().get().getFooter());
+
+            current.sendPlayerListHeaderAndFooter(headerComponent, footerComponent);
+        });
     }
 
 }

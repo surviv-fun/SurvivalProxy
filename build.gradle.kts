@@ -38,8 +38,8 @@ description = "Proxy System for surviv.fun"
 val commit: String? = commitHash()
 
 repositories {
-    maven { url = uri("https://plugins.gradle.org/m2/") }
     mavenCentral()
+    maven { url = uri("https://plugins.gradle.org/m2/") }
     mavenLocal()
 }
 
@@ -48,11 +48,8 @@ subprojects {
     version = rootProject.version
 
     repositories {
-        maven { url = uri("https://plugins.gradle.org/m2/") }
-        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
-        maven { url = uri("https://oss.sonatype.org/content/repositories/central/") }
-        maven { url = uri("https://repo.velocitypowered.com/snapshots/") }
         mavenCentral()
+        maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
         mavenLocal()
     }
 
