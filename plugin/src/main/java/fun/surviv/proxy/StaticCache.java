@@ -22,7 +22,9 @@ package fun.surviv.proxy;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -33,7 +35,10 @@ import java.util.UUID;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StaticCache {
+    public static UUID console = UUID.randomUUID();
 
     public static HashMap<UUID, UUID> reply = new HashMap<>();
+
+    public static List<UUID> globalChat = new ArrayList<>();
 
 }

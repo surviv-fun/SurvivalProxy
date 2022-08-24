@@ -19,7 +19,12 @@
 
 package fun.surviv.proxy.listener;
 
+import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.player.PlayerChatEvent;
+import com.velocitypowered.api.proxy.Player;
+import fun.surviv.proxy.StaticCache;
 import fun.surviv.proxy.SurvivalProxyPlugin;
+import fun.surviv.proxy.serialization.ComponentSerializer;
 
 /**
  * SurvivalProxy; fun.surviv.proxy.listener:GlobalChatListener
@@ -33,6 +38,26 @@ public class GlobalChatListener {
 
     public GlobalChatListener(SurvivalProxyPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    @Subscribe
+    public void handlePlayerChat(PlayerChatEvent event) {
+        // TODO: FORGET THE FXXXNG CHAT EVENT IN A PROXY XD
+
+        // Player player = event.getPlayer();
+
+        // if(player.hasPermission("proxy.teamchat") && (event.getMessage().toLowerCase().startsWith("@team ") || event.getMessage().toLowerCase().startsWith("@team"))) {
+        //     for(Player current : plugin.getServer().getAllPlayers()) {
+        //         if(current.hasPermission("proxy.teamchat")) {
+        //             current.sendMessage(ComponentSerializer.etAndHEX.deserialize("&7&l[&r&3TEAM&8CHAT&7&l]&r ").append(ComponentSerializer.etAndHEX.deserialize("&7" + player.getUsername() + " &r")).append(ComponentSerializer.etAndHEX.deserialize(event.getMessage())));
+        //         }
+        //     }
+        // }
+
+        // if(StaticCache.globalChat.contains(player.getUniqueId())) {
+        //     // TODO: broadcast global chat message
+        // }
+
     }
 
 }
